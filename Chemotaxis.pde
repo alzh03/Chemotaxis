@@ -1,13 +1,48 @@
- //declare bacteria variables here   
- void setup()   
- {     
- 	//initialize bacteria variables here   
- }   
- void draw()   
- {    
- 	//move and show the bacteria   
- }  
- class Bacteria    
- {     
- 	//lots of java!   
- }    
+class Bacteria{
+  int myX;
+  float myY;
+  float mySpeed;
+  int mySize;
+  int myColor;
+
+  Bacteria(){
+  myX = 0;
+  myY = (int)(Math.random()*400);
+  mySpeed = mySize/30.0;
+  mySize = (int)(Math.random()*50 + 20);
+  myColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+  }
+  void rise(){
+    myX = myX + (int)(Math.random()*6)-1;
+    myY = myY + (int)(Math.random()*3)-1;
+    if(myY < -100){
+    myY = 500;
+    }
+  }
+  void show(){
+  fill(myColor, 25);
+  noStroke();
+  ellipse(myY, myX, mySize, mySize);
+  }
+}
+
+
+Bacteria[] joe = new Bacteria[6];
+
+void setup(){
+  size(400, 400);
+  background(255);
+  for(int i = 0; i < joe.length; i++){
+    joe[i] = new Bacteria();
+  }
+}
+void draw(){
+  for(int i = 0; i < joe.length; i++){
+  joe[i].show();
+  joe[i].rise();
+  }
+}
+
+void mousePressed() {
+setup();
+}
